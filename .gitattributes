@@ -1,2 +1,3 @@
-*.I linguist-detectable=false
+Cr* linguist-detectable=false
+*.pdf linguist-detectable=false
 *.py linguist-detectable=true
