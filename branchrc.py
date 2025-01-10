@@ -3,24 +3,20 @@
 
 def set_parameters():
 
-    upper_level = "a3F4p_y4F4*"
-    file_name = "y4F4"
-    reference_level = "3F4s__a4F4"
-    transfer_file = "Cr102700.03.II"
-    transfer_level = "d5____a4G5"
-	
-    identified_lines_file = "CrII.CS"
-    lifetime_file = "cr_ii.lev"
-    delfile = "Cr102700.003.II"
-    delval = "d5____a4P1"
-    lifetime_unc = 0.10
-    all_spectrum_files = '*.II'
-    calc_file = "CrII_waveno.E1"
-    discrim = 0.2            # Wavelength discriminator to match observations with calculations
-    unc_cal = 0.07            # Calibration uncertainty estimated from 5% discrepancy in measurements
-                             # coverts to 2x5/sqrt(3) = 5.8 %. Add to lamp uncertainty of 3.5% = 6.8%
-                             # Round up to 7 %
+    file_name = "y4F4"                     # 0
+    upper_level = "a3F4p_y4F4*"            # 1
+    reference_level = "3F4s__a4F4"         # 2
+    reference_file = "Cr102700.003.I"      # 3
+    normal_level = "d5____a4G5"            # 4
+    identified_lines_file = "CrII.CS"      # 5
+    level_file = "cr_ii.lev"               # 6
+    lifetime_unc = 0.10                    # 7
+    spectrum_files = '*.II'                # 8
+    calc_file = "CrII_waveno.E1"           # 9
+    discrim = 0.2            # 10 : Wavenumber discriminator to match observations with calculations
+    plotwin_length = 32                    # 11        
 
-    return (file_name, upper_level, reference_level, transfer_file,
-			transfer_level, identified_lines_file, lifetime_file, lifetime_unc, all_spectrum_files,
-            delfile,delval,calc_file,discrim, unc_cal)
+
+    return (file_name, upper_level, reference_level, reference_file,
+			normal_level, identified_lines_file, level_file, lifetime_unc, spectrum_files,
+            calc_file,discrim,plotwin_length)
