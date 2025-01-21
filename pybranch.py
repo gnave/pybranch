@@ -477,7 +477,8 @@ class BranchingFractionCalc(Frame):
         self.log(f'| Wavenumber | L Level    | '+f'SNR | Intensity | '*file_num + f'        |        |')
         self.log(''.join(['-']*width))
 
-        for wavenumber in self.wavenumbers:
+        # Use [:] so that an element can be removed without skipping an iteration
+        for wavenumber in self.wavenumbers[:]:
 
             data_line = f"| {wavenumber:>10.3f} | {self.transition_ids[wavenumber]:>10s} | "
             # Calculate the weighted mean intensity and standard deviation
@@ -490,6 +491,7 @@ class BranchingFractionCalc(Frame):
                 Imean = 0
                 # Remove this value from self.wavenumbers if its not seen in any spectra
                 self.wavenumbers.remove(wavenumber)
+                continue
 
             for spectrum in self.all_spectrum_files:
                 
