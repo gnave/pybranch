@@ -1,0 +1,7 @@
+# requirements.txt
+numpy
+scipy
+matplotlib
+pyyaml
+PyQt6
+matplotlib
