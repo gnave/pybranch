@@ -1,0 +1,75 @@
+# config.yaml
+# --------------------------------------------------------------------------
+# Configuration for the PyBranch Branching Fraction Calculator
+# --------------------------------------------------------------------------
+
+# --- File and Path Settings ---
+# Paths to input data files. Can use glob patterns (*).
+files:
+  # Glob pattern for the experimental summary files (e.g., *.II, *.dat, etc.)
+  spectrum_glob: "*.II"
+  
+  # Glob pattern for the atomic level data files
+  levels_glob: "*.lev"
+    
+  # The SINGLE, authoritative file for identifying energy level structures.
+  # This is the file that will be cross-referenced with the identified_lines file.
+  master_level_file: "cr_ii.lev"
+   
+  # File containing the list of identified lines (e.g., from Xgremlin)
+  identified_lines: "CrII.CS"
+  
+  # File containing theoretical transition probabilities (A-values)
+  theoretical_lines: "CrII_waveno.E1"
+
+# --- Analysis Parameters ---
+# Settings that control the scientific calculations.
+analysis:
+  # The wavenumber tolerance (in cm-1) for matching an observed line to a theoretical one.
+  wavenumber_discriminator: 0.2
+  
+  # Parameters for Voigt profile fitting.
+  voigt_fit:
+    # Wavenumber window (cm-1) to match a line in a linelist.
+    match_window: 0.1
+    # Kielkopf's eta parameter for calculating Gaussian width from Voigt width.
+    kielkopf_eta: 0.099
+    
+  # The maximum weight to apply in weighted averages. This prevents single,
+  # high-SNR lines from dominating the statistics. Corresponds to a lower limit
+  # on uncertainty. (555 = 1 / (0.06**2 / 2))
+  weighting_cap: 555
+
+# --- Uncertainty Settings ---
+# Parameters related to uncertainty propagation.
+uncertainties:
+  # The fractional uncertainty in the upper level lifetime (e.g., 0.10 for 10%).
+  lifetime: 0.10
+  
+  # The factor used to estimate calibration uncertainty per 1000 cm-1.
+  # Original code used 70 / (hiE - lowE).
+  calibration_factor: 70.0
+
+# --- Plotting Settings ---
+plotting:
+  # The default number of data points to show in the line plot window.
+  window_length: 32
+
+# --- Default GUI Values ---
+# Default values to pre-populate fields in the user interface.
+defaults:
+  log_filename: "y4F4"
+  upper_level: "a3F4p_y4F4*"
+  reference_level: "3F4s__a4F4"
+  rescale_level: "d5____a4G5"
+  rescale_file: "Cr042416.05.II"
+
+  # --- Data Curation Settings ---
+# A list of specific data points to remove from the analysis before calculations.
+# Each item in the list should specify the file and the wavenumber of the line to delete.
+deletions:
+  - file: "Cr120800.01.II"
+    wavenumber: 42414.880
+  # You can add more lines to delete here, for example:
+  # - file: "some_other_file.II"
+  #   wavenumber: 12345.678
